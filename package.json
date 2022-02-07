@@ -1,0 +1,29 @@
+{
+    "name": "@personalhealthtrain/email-service",
+    "license": "MIT",
+    "version": "0.0.0",
+    "description": "This package contains the e-mail service of the PHT.",
+    "scripts": {
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts",
+        "build": "rimraf dist && tsc",
+        "lint": "eslint --ext .ts,.js ./src",
+        "lint:fix": "npm run lint -- --fix"
+    },
+    "dependencies": {
+        "@personalhealthtrain/ui-common": "^1.1.0-alpha.8",
+        "@tada5hi/eslint-config-typescript": "^0.0.25",
+        "@trapi/client": "^2.0.4",
+        "@typescript-auth/domains": "^0.0.21",
+        "@typescript-error/core": "^1.1.2",
+        "dotenv": "^16.0.0",
+        "redis-extension": "^1.0.0-4",
+        "rimraf": "^3.0.2",
+        "socket.io-client": "^4.4.1",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.5"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.15"
+    }
+}

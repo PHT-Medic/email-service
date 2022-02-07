@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+
+        "declaration": true,
+        "declarationMap": true,
+
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
+        "noEmitOnError": true,
+
+        "skipLibCheck": true,
+
+        "esModuleInterop": true,
+
+        "moduleResolution": "Node",
+        "module": "CommonJS",
+        "target": "ESNext",
+        "lib": [
+            "ESNext"
+        ],
+        "strict": false,
+
+        "outDir": "./dist"
+    },
+    "exclude": ["node_modules"],
+}
+
