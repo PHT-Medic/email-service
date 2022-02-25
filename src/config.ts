@@ -1,7 +1,8 @@
 import { setConfig as setHTTPConfig, useClient, useClient as useHTTPClient } from '@trapi/client';
 import {
+    HTTPClient,
     VaultAPI,
-} from '@personalhealthtrain/ui-common';
+} from '@personalhealthtrain/central-common';
 import https from 'https';
 import { ErrorCode } from '@typescript-auth/domains';
 import { Environment } from './env';
@@ -31,6 +32,7 @@ function createConfig({ env } : ConfigContext) : Config {
     }, 'vault');
 
     setHTTPConfig({
+        clazz: HTTPClient,
         driver: {
             baseURL: env.apiUrl,
             withCredentials: true,

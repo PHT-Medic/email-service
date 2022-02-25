@@ -1,7 +1,9 @@
-import { buildSocketRealmNamespaceName } from '@personalhealthtrain/ui-common';
-import { MASTER_REALM_ID } from '@typescript-auth/domains';
 import { SocketInterface, useSocketManager } from '../../config/socket';
 import { findTokenForRobot } from '../../config/utils';
+
+import { createProposalSocketComponentHandler } from './domains/proposal';
+import { createTestSocketComponentHandler } from './domains/test';
+import { createProposalStationSocketComponentHandler } from './domains/proposal-station';
 
 export function buildSocketComponentHandler() {
     function start() {
@@ -14,33 +16,16 @@ export function buildSocketComponentHandler() {
 
                 const manager = useSocketManager();
 
-                const socket: SocketInterface = manager.socket(buildSocketRealmNamespaceName(MASTER_REALM_ID), {
+                const socket: SocketInterface = manager.socket('/', {
                     auth: {
                         token: token.access_token,
                     },
                 });
 
-                socket.on('connect', () => {
-                    console.log('connected');
-                });
-
-                socket.on('connect_error', (err) => {
-                    console.log(err);
-                    process.exit(1);
-                });
-
-                socket.connect();
-
-                socket.emit('proposalsSubscribe');
-                socket.emit('trainsSubscribe');
-
-                socket.on('proposalUpdated', async (proposal) => {
-                    console.log(proposal);
-                });
-
-                socket.on('trainUpdated', async (train) => {
-                    console.log(train);
-                });
+                createProposalSocketComponentHandler(socket);
+                createTestSocketComponentHandler(socket);
+                createProposalStationSocketComponentHandler(socket);
+                // todo: add additional domain handlers
 
                 socket.connect();
             });

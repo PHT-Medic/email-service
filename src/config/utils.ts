@@ -1,5 +1,5 @@
 import { OAuth2TokenGrant, OAuth2TokenResponse, TokenAPI } from '@typescript-auth/domains';
-import { ROBOT_SECRET_ENGINE_KEY, ServiceID, VaultAPI } from '@personalhealthtrain/ui-common';
+import { ROBOT_SECRET_ENGINE_KEY, ServiceID, VaultAPI } from '@personalhealthtrain/central-common';
 import { useClient } from '@trapi/client';
 
 export async function findTokenForRobot() : Promise<OAuth2TokenResponse | undefined> {
