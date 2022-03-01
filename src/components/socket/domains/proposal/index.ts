@@ -13,8 +13,6 @@ export function createProposalSocketComponentHandler(socket: SocketInterface) {
     // x pro Proposal
     socket.on('proposalUpdated', async (proposal) => {
         handleProposalUpdated(proposal.data);
-        // console.log(`updated proposal ${proposal.data.title}`);
-        // console.dir(proposal.data);
     });
 
     // 1 pro Proposal

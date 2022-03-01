@@ -1,9 +1,11 @@
 import { SocketInterface, useSocketManager } from '../../config/socket';
+import * as env from '../../env'
 import { findTokenForRobot } from '../../config/utils';
-
-import { createProposalSocketComponentHandler } from './domains/proposal';
 import { createTestSocketComponentHandler } from './domains/test';
 import { createProposalStationSocketComponentHandler } from './domains/proposal-station';
+
+
+
 
 export function buildSocketComponentHandler() {
     function start() {
@@ -22,9 +24,23 @@ export function buildSocketComponentHandler() {
                     },
                 });
 
-                createProposalSocketComponentHandler(socket);
+                // create the smtp client
+                const nodemailer = require("nodemailer");
+                const smtpClient = nodemailer.createTransport({
+                    host: env.default.smtpHost,
+                    port: env.default.smtpPort,
+                    secure: false, // true for 465, false for other ports
+                    auth: {
+                        user: env.default.smtpUser, // generated ethereal user
+                        pass: env.default.smtpPassword, // generated ethereal password
+                    },
+                });
+
+
+
+                //createProposalSocketComponentHandler(socket);
                 createTestSocketComponentHandler(socket);
-                createProposalStationSocketComponentHandler(socket);
+                createProposalStationSocketComponentHandler(socket, smtpClient);
                 // todo: add additional domain handlers
 
                 socket.connect();
