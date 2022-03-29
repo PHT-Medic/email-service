@@ -11,7 +11,7 @@
         "lint:fix": "npm run lint -- --fix"
     },
     "dependencies": {
-        "@personalhealthtrain/central-common": "^1.2.0-alpha.3",
+        "@personalhealthtrain/central-common": "^1.3.24",
         "@tada5hi/eslint-config-typescript": "^0.0.25",
         "@trapi/client": "^2.0.4",
         "@typescript-auth/domains": "^0.0.28",
