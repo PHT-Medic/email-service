@@ -2,7 +2,9 @@ import { SocketInterface, useSocketManager } from '../../config/socket';
 import * as env from '../../env'
 import { findTokenForRobot } from '../../config/utils';
 import { createTestSocketComponentHandler } from './domains/test';
-import { createProposalStationSocketComponentHandler } from './domains/proposal-station';
+import { ProposalStationSocketComponentHandler } from './domains/proposal-station';
+import {SMTPClient} from "smtp-client";
+import {TrainStationSocketComponentHandler} from "./domains/train-listeners";
 
 
 
@@ -40,7 +42,8 @@ export function buildSocketComponentHandler() {
 
                 //createProposalSocketComponentHandler(socket);
                 createTestSocketComponentHandler(socket);
-                createProposalStationSocketComponentHandler(socket, smtpClient);
+                ProposalStationSocketComponentHandler(socket, smtpClient);
+                TrainStationSocketComponentHandler(socket, SMTPClient);
                 // todo: add additional domain handlers
 
                 socket.connect();
