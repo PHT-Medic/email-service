@@ -2,7 +2,7 @@ import { SocketInterface } from '../../../../config/socket';
 import { handleProposalUpdated } from './update-handler';
 
 export function createProposalSocketComponentHandler(socket: SocketInterface) {
-    socket.emit('proposalsSubscribe');
+    socket.emit('proposalSubscribe');
 
     // 1 pro Proposal
     socket.on('proposalCreated', async (proposal) => {

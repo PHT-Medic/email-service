@@ -1,11 +1,10 @@
+import { nodemailer } from 'nodemailer';
 import { SocketInterface } from '../../../config/socket';
 import { useCentralAPI } from '../../../utils';
-import {nodemailer} from 'nodemailer';
-import {proposalStationCreatedMessage, proposalStationDeletedMessage} from "./compose-messages";
+import { proposalStationCreatedMessage, proposalStationDeletedMessage } from './compose-messages';
 
-
-export function ProposalStationSocketComponentHandler(socket: SocketInterface, smtpClient:  nodemailer.Transport) {
-    socket.emit('proposalStationsSubscribe');
+export function ProposalStationSocketComponentHandler(socket: SocketInterface, smtpClient: nodemailer.Transport) {
+    socket.emit('proposalStationSubscribe');
 
     // 1 pro Proposal
     socket.on('proposalStationCreated', async (proposal) => {
@@ -13,19 +12,19 @@ export function ProposalStationSocketComponentHandler(socket: SocketInterface, s
 
         const proposal_data = await api.proposal.getMany({
             filter: {
-                id: proposal.data.proposal_id
+                id: proposal.data.proposal_id,
             },
-            fields: ['+user']
+            fields: ['+user'],
         });
 
         const response_station = await api.station.getMany({
             filter: {
                 id: proposal.data.station_id,
             },
-            fields: ['+secure_id', '+email'],
+            fields: ['+email'],
         });
 
-        await proposalStationCreatedMessage(proposal_data.data[0], response_station.data[0], smtpClient)
+        await proposalStationCreatedMessage(proposal_data.data[0], response_station.data[0], smtpClient);
     });
 
     // x pro Proposal
@@ -42,18 +41,18 @@ export function ProposalStationSocketComponentHandler(socket: SocketInterface, s
 
         const proposal_data = await api.proposal.getMany({
             filter: {
-                id: proposal.data.proposal_id
+                id: proposal.data.proposal_id,
             },
-            fields: ['+user']
+            fields: ['+user'],
         });
 
         const response_station = await api.station.getMany({
             filter: {
                 id: proposal.data.station_id,
             },
-            fields: ['+secure_id', '+email'],
+            fields: ['+email'],
         });
 
-        await proposalStationDeletedMessage(proposal_data.data[0], response_station.data[0], smtpClient)
+        await proposalStationDeletedMessage(proposal_data.data[0], response_station.data[0], smtpClient);
     });
 }

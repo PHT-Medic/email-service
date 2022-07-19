@@ -1,10 +1,10 @@
 import { setConfig as setHTTPConfig, useClient, useClient as useHTTPClient } from '@trapi/client';
 import {
     HTTPClient,
-    VaultAPI,
 } from '@personalhealthtrain/central-common';
 import https from 'https';
 import { ErrorCode } from '@typescript-auth/domains';
+import { VaultClient } from '@trapi/vault-client';
 import { Environment } from './env';
 import { useSocketManager } from './config/socket';
 import { buildSocketComponentHandler } from './components/socket';
@@ -20,7 +20,7 @@ export type Config = {
 
 function createConfig({ env } : ConfigContext) : Config {
     setHTTPConfig({
-        clazz: VaultAPI,
+        clazz: VaultClient,
         driver: {
             httpsAgent: new https.Agent({
                 rejectUnauthorized: false,
