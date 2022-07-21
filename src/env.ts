@@ -1,8 +1,6 @@
 import { config } from 'dotenv';
 import path from 'path';
 
-
-
 const envResult = config({
     path: path.resolve(__dirname, '../.env'),
 });
@@ -38,7 +36,7 @@ export interface Environment {
     smtpHost: string,
     smtpPort: number,
 
-    proposal_link: String,
+    proposal_link: string,
     train_link
 }
 
@@ -56,10 +54,10 @@ const env : Environment = {
     smtpHost: requireFromEnv('SMTP_HOST'),
     smtpPort: requireFromEnv('SMTP_PORT', 587),
 
-    proposal_link: requireFromEnv('PROPOSAL_LINK', "https://staging-pht.tada5hi.net/proposals/"),
-    train_link: requireFromEnv('TRAIN_LINK',"https://staging-pht.tada5hi.net/trains/"),
-    //self.proposal_link =   "https://pht.tada5hi.net/proposals/"
-    //self.train_link = "https://pht.tada5hi.net/trains/"
+    proposal_link: requireFromEnv('PROPOSAL_LINK', 'https://staging-pht.tada5hi.net/proposals/'),
+    train_link: requireFromEnv('TRAIN_LINK', 'https://staging-pht.tada5hi.net/trains/'),
+    // self.proposal_link =   "https://pht.tada5hi.net/proposals/"
+    // self.train_link = "https://pht.tada5hi.net/trains/"
 };
 
 export default env;

@@ -21,11 +21,6 @@ export type Config = {
 function createConfig({ env } : ConfigContext) : Config {
     setHTTPConfig({
         clazz: VaultClient,
-        driver: {
-            httpsAgent: new https.Agent({
-                rejectUnauthorized: false,
-            }),
-        },
         extra: {
             connectionString: env.vaultConnectionString,
         },
