@@ -1,0 +1,7 @@
+
+Hallo {{receiver_name}},
+
+{{text}}
+
+Regards,
+PHT

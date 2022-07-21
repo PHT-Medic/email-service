@@ -42,6 +42,7 @@ function formatEmailHTMLText(text, receiver_name) {
 }
 async function send(smtpClient: nodemailer.Transport, station: Station, emailHTMLText: string, emailSubject: string) {
     if (station.email != null) {
-        await sendEmail(smtpClient, station.email, emailHTMLText, emailSubject);
+        // TODO get name
+        await sendEmail(smtpClient, station.email, emailHTMLText,station.email, emailSubject);
     }
 }
